@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHD DIGITAL 👨‍💻 | Mohamed Guebre</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4c5b6d2a4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background: #0b0b0b; color: white; overflow-x: hidden; width: 100%; }
+
+        /* HEADER */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.98); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        header .logo { color: #2ecc71; font-weight: bold; font-size: 22px; display: flex; align-items: center; gap: 10px; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #2ecc71; }
+        
+        .social-icons { display: flex; align-items: center; gap: 15px; }
+        .social-icons img { width: 22px; height: 22px; filter: invert(1); transition: 0.3s; cursor: pointer; }
+        .social-icons img:hover { filter: invert(0.6) sepia(1) saturate(5) hue-rotate(90deg); transform: scale(1.2); }
+
+        /* HERO */
+        .hero-top-section {
+            position: relative;
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+            padding-top: 80px;
+        }
+        #particles-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .hero-content-wrapper { display: flex; align-items: center; justify-content: space-between; width: 84%; z-index: 2; position: relative; }
+        .hero-text { max-width: 600px; }
+        .hero-text h1 { font-size: 55px; color: #2ecc71; font-weight: bold; line-height: 1.1; }
+        .hero-text h2 { margin-top: 15px; font-weight: bold; min-height: 35px; font-size: 26px; color: #fff; }
+        .hero-text p { margin: 25px 0; font-size: 18px; color: #ccc; max-width: 550px; }
+        
+        .btn { display: inline-block; padding: 12px 35px; background: #2ecc71; border-radius: 30px; color: black; text-decoration: none; font-weight: bold; margin-right: 15px; transition: 0.3s; border: 2px solid #2ecc71; }
+        .btn:hover { background: transparent; color: #2ecc71; }
+        .hero-image img { width: 320px; border-radius: 30px; box-shadow: 0 0 40px #2ecc71; animation: glow 3s infinite alternate; }
+
+        /* MARQUEE */
+        .marquee-container { width: 100vw; background: #111; border-top: 2px solid #2ecc71; border-bottom: 2px solid #2ecc71; z-index: 10; position: relative; overflow: hidden; }
+        .marquee-content { display: inline-block; white-space: nowrap; padding: 18px 0; animation: marquee 30s linear infinite; color: #2ecc71; font-weight: bold; font-size: 18px; text-transform: uppercase; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* SECTIONS */
+        section { padding: 100px 8%; position: relative; z-index: 5; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 38px; color: #2ecc71; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+        .section-desc { color: #aaa; font-size: 18px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #161616; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #222; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); border-color: #2ecc71; box-shadow: 0 15px 40px rgba(46, 204, 113, 0.2); }
+        .card img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+
+        /* TRUST */
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .trust-card { background: #111; padding: 40px 25px; border-radius: 20px; text-align: center; border-bottom: 4px solid #2ecc71; transition: 0.3s; }
+        .trust-card i { font-size: 50px; color: #2ecc71; margin-bottom: 20px; }
+
+        /* AVIS */
+        .ps-container { width: 100vw; overflow: hidden; background: #080808; padding: 60px 0; margin-left: -8%; }
+        .ps-track { display: flex; animation: scrollTest 35s linear infinite; width: max-content; }
+        .ps-card { background: #1a1a1a; width: 350px; margin: 0 15px; padding: 25px; border-radius: 15px; border-left: 4px solid #2ecc71; }
+        .ps-header { display: flex; align-items: center; margin-bottom: 12px; }
+        .ps-avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000; margin-right: 15px; }
+        .ps-name { font-weight: bold; font-size: 16px; color: #fff; }
+        .ps-stars { color: #2ecc71; font-size: 13px; }
+        .ps-text { font-size: 15px; color: #bbb; margin-top: 10px; }
+        @keyframes scrollTest { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* STATS */
+        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; background: #111; padding: 80px 8%; text-align: center; }
+        .stat h1 { font-size: 55px; color: #2ecc71; font-weight: bold; margin-bottom: 10px; }
+        .btn-viral { display: inline-block; padding: 22px 60px; background: #2ecc71; color: #000; font-size: 22px; font-weight: bold; border-radius: 50px; text-decoration: none; box-shadow: 0 0 40px rgba(46, 204, 113, 0.6); transition: 0.4s; text-transform: uppercase; margin-top: 50px; }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; color: white; font-size: 40px; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+
+        @keyframes glow { 0% { box-shadow: 0 0 20px #2ecc71; } 100% { box-shadow: 0 0 50px #2ecc71; } }
+        @media (max-width: 900px) { .hero-content-wrapper { flex-direction: column; text-align: center; } .hero-image img { width: 260px; margin-top: 40px; } .hero-text h1 { font-size: 40px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><i class="fa-solid fa-bolt"></i> MHD DIGITAL🧑‍💻</div>
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#formations">Formations</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="IG"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="IN"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TK"></a>
+    </div>
+</header>
+
+<div class="hero-top-section" id="accueil">
+    <div id="particles-js"></div>
+    <div class="hero-content-wrapper">
+        <div class="hero-text">
+            <h1>Mohamed Guebre</h1>
+            <h2 id="typing"></h2>
+            <p>J'accompagne les entreprises et les particuliers à exploser leurs résultats grâce à des stratégies digitales percutantes.</p>
+            <a href="portfolio.html" class="btn">Voir Portfolio</a>
+            <a href="https://wa.me/22664639856" class="btn" style="background:transparent; color:#2ecc71;">WhatsApp</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/photo.png" alt="Mohamed Guebre">
+        </div>
+    </div>
+</div>
+
+<div class="marquee-container">
+    <div class="marquee-content">
+        Mohamed Guebre 🎯 Community Manager & Expert Social Media - 🚀 Coach en Entrepreneuriat Digital - 🎬 Créateur de Contenus Viraux & Monteur Vidéo Pro - Je transforme votre vision en résultats concrets.
+    </div>
+</div>
+
+<section id="services">
+    <div class="section-header">
+        <h2 class="section-title">Mes Services</h2>
+        <p class="section-desc">Des prestations de haute qualité pour dominer votre marché.</p>
+    </div>
+    <div class="grid">
+        <div class="card"><img src="images/community.png"><h3>Community Management</h3><p>Je conçois des stratégies Social Media sur mesure pour attirer, engager et fidéliser votre audience.</p></div>
+        <div class="card"><img src="images/canva.png"><h3>Design Canva</h3><p>Je crée des affiches sur mesure alliant esthétique soignée et impact visuel fort.</p></div>
+        <div class="card"><img src="images/video.png"><h3>Montage Vidéo</h3><p>Rythme, effets, musique et storytelling — tout est calibré pour maximiser vos vues.</p></div>
+        <div class="card"><img src="images/reseau.png"><h3>Stratégie Digitale</h3><p>Je conçois une stratégie complète pour atteindre vos objectifs de croissance.</p></div>
+        <div class="card"><img src="images/pub.png"><h3>Facebook Ads</h3><p>Des campagnes publicitaires stratégiques et rentables pour maximiser votre ROI.</p></div>
+        <div class="card"><img src="images/copywriting.png"><h3>Copywriting</h3><p>Je crée des textes puissants qui donnent envie, convainquent et convertissent.</p></div>
+    </div>
+</section>
+
+<section id="formations" style="background:#080808; text-align:center;">
+    <div class="section-header">
+        <h2 class="section-title">Mes Formations</h2>
+        <p class="section-desc">Des méthodes testées et éprouvées pour vivre de votre activité digitale.</p>
+    </div>
+    <div class="grid">
+        <div class="card"><img src="images/cm.png"><h3>CM Masterclass</h3><p>Mon expérience condensée en un programme concret.</p><a href="https://vvcdqast.mychariow.shop/prd_p9q4zi" class="btn" style="display:block; margin:15px 0;">Accéder</a></div>
+        <div class="card"><img src="images/fmv.png"><h3>Montage Vidéo</h3><p>Techniques pro pour produire des contenus viraux.</p><a href="https://vvcdqast.mychariow.shop/prd_4w375s" class="btn" style="display:block; margin:15px 0;">Accéder</a></div>
+        <div class="card"><img src="images/fmd.png"><h3>Marketing Digital</h3><p>Bâtir un business digital solide et rentable.</p><a href="https://vvcdqast.mychariow.shop/prd_90xshs" class="btn" style="display:block; margin:15px 0;">Accéder</a></div>
+        <div class="card"><img src="images/fads.png"><h3>Ads Secrets</h3><p>Maîtrise la publicité pour un retour concret.</p><a href="https://vvcdqast.mychariow.shop/prd_xhjx31" class="btn" style="display:block; margin:15px 0;">Accéder</a></div>
+        <div class="card"><img src="images/cp.png"><h3>Copywriting</h3><p>Transforme tes mots en machine à vendre.</p><a href="https://vvcdqast.mychariow.shop/prd_pz7imz" class="btn" style="display:block; margin:15px 0;">Accéder</a></div>
+    </div>
+    <br><br>
+    <a href="https://vvcdqast.mychariow.shop/" class="btn-viral">🚀 Voir toute la boutique 🚀</a>
+</section>
+
+<section id="trust">
+    <div class="section-header"><h2 class="section-title">Pourquoi me choisir ?</h2></div>
+    <div class="trust-grid">
+        <div class="trust-card"><i class="fa-solid fa-heart-handshake"></i><h3>Authenticité</h3><p>Je partage une expérience réelle et des méthodes testées.</p></div>
+        <div class="trust-card"><i class="fa-solid fa-bolt"></i><h3>Expertise</h3><p>Le partenaire digital tout-en-un pour votre business.</p></div>
+        <div class="trust-card"><i class="fa-solid fa-bullseye"></i><h3>Résultats</h3><p>Pas de théorie inutile, uniquement des méthodes qui fonctionnent.</p></div>
+        <div class="trust-card"><i class="fa-solid fa-bolt"></i><h3>Impact</h3><p>Je transforme votre présence digitale pour une croissance durable.</p></div>
+    </div>
+</section>
+
+<section class="ps-container">
+    <div class="section-header"><h2 class="section-title">Avis Clients</h2></div>
+    <div class="ps-track">
+        <div class="ps-card"><div class="ps-header"><div class="ps-avatar" style="background:#2ecc71;">J</div><div class="ps-name">Jean T. <div class="ps-stars">★★★★★</div></div></div><p class="ps-text">"Expertise incroyable au Burkina. Mes ventes ont explosé."</p></div>
+        <div class="ps-card"><div class="ps-header"><div class="ps-avatar" style="background:#3498db;">M</div><div class="ps-name">Moussa K. <div class="ps-stars">★★★★★</div></div></div><p class="ps-text">"Les stratégies Facebook Ads sont redoutables. Je recommande !"</p></div>
+        <div class="ps-card"><div class="ps-header"><div class="ps-avatar" style="background:#f1c40f;">S</div><div class="ps-name">Sarah L. <div class="ps-stars">★★★★★</div></div></div><p class="ps-text">"Un pro du montage. Mes vidéos TikTok font des millions de vues."</p></div>
+        <div class="ps-card"><div class="ps-header"><div class="ps-avatar" style="background:#2ecc71;">J</div><div class="ps-name">Jean T. <div class="ps-stars">★★★★★</div></div></div><p class="ps-text">"Expertise incroyable au Burkina. Mes ventes ont explosé."</p></div>
+        <div class="ps-card"><div class="ps-header"><div class="ps-avatar" style="background:#3498db;">M</div><div class="ps-name">Moussa K. <div class="ps-stars">★★★★★</div></div></div><p class="ps-text">"Les stratégies Facebook Ads sont redoutables. Je recommande !"</p></div>
+    </div>
+</section>
+
+<section id="stats-trigger" class="stats">
+    <div class="stat"><h1 id="s1">0</h1><p>Clients Accompagnés</p></div>
+    <div class="stat"><h1 id="s2">0</h1><p>Vues Générées (k)</p></div>
+    <div class="stat"><h1 id="s3">0</h1><p>Satisfaction (%)</p></div>
+</section>
+
+<section id="contact" style="background:#050505; text-align: center;">
+    <h2 class="section-title">Contact</h2>
+    <form action="mailto:mhd.p.c.s.75@gmail.com" method="post" enctype="text/plain" style="max-width: 600px; margin: auto;">
+        <input type="text" placeholder="Nom" required style="width: 100%; padding: 15px; margin-bottom: 15px; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
+        <textarea placeholder="Votre message" required style="width: 100%; padding: 15px; background: #111; color: white; border: 1px solid #333; border-radius: 8px; height: 120px;"></textarea>
+        <button type="submit" class="btn" style="width:100%;">Envoyer</button>
+    </form>
+</section>
+
+<footer style="text-align:center; padding:40px; border-top: 1px solid #222; color:#555;">
+    <p>© 2026 Mohamed Guebre | Mhd Digital. Tous droits réservés.</p>
+</footer>
+
+<a href="https://wa.me/22664639856" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // PARTICULES
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100 },
+                "color": { "value": "#2ecc71" },
+                "size": { "value": 3 },
+                "line_linked": { "enable": true, "color": "#2ecc71", "opacity": 0.3 },
+                "move": { "enable": true, "speed": 2.5 }
+            }
+        });
+
+        // TYPING
+        const txt = "Expert en Stratégie & Social Media";
+        let index = 0;
+        function typeText() {
+            if(index < txt.length) {
+                document.getElementById("typing").innerHTML += txt.charAt(index);
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+        typeText();
+
+        // COMPTEURS
+        function animateCounter(id, target) {
+            let obj = document.getElementById(id);
+            let current = 0;
+            let step = target / 60;
+            let timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    obj.innerText = "+" + target;
+                    clearInterval(timer);
+                } else {
+                    obj.innerText = "+" + Math.floor(current);
+                }
+            }, 30);
+        }
+
+        let started = false;
+        window.onscroll = () => {
+            let trigger = document.getElementById('stats-trigger');
+            if (trigger && !started) {
+                let pos = trigger.getBoundingClientRect().top;
+                if (pos < window.innerHeight - 100) {
+                    animateCounter("s1", 250);
+                    animateCounter("s2", 500);
+                    animateCounter("s3", 99);
+                    started = true;
+                }
+            }
+        };
+    });
+</script>
+</body>
+</html>
